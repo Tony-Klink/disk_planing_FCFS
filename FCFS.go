@@ -86,18 +86,37 @@ func fcfs() {
 	gc.FillStroke()
 	gc.MoveTo(10, 10)
 	gc.LineTo(10, 490.0)
-	gc.LineTo(490, 490)
+	gc.LineTo(1200, 490)
 	gc.Stroke()
 	gc.SetLineDash(nil, 0.0)
 	gc.MoveTo(float64(h)/2, delta_time*20)
 	gc.LineTo(g[0]/2, delta_time*20+delta_time*20)
+	//Стоим график
 	for k, v := range g {
+		gc.SetLineWidth(3.0)
+
 		gc.LineTo(v+1/2, float64(k+1)*delta_time*20+delta_time*20)
 		if k > n-2 {
 			break
 		}
 	}
 	gc.Stroke()
+	//gc.MoveTo(0.0, 0.0)
+	gc.SetLineWidth(0.5)
+	var cor1, cor2 float64 = 10, 10
+	//gc.SetLineDash([]float64{10, 10, 10, 10}, 90.0)
+	for i := 10; i < 1200; i = i + 20 {
+		gc.MoveTo(cor1 + float64(i), 490)
+		gc.LineTo(float64(i) + cor1, cor2)
+		gc.Stroke()
+	}
+	//gc.SetLineDash([]float64{20, 20, 20, 20}, 90.0)
+		for i := 10; i < 1200; i = i + 20 {
+		gc.MoveTo(10, cor2 + float64(i))
+		gc.LineTo(1200, cor2 + float64(i))
+		gc.Stroke()
+	}
+	//gc.Stroke()
 	saveToPngFile("FCFS_graph.png", d)
 }
 // Функции сохранения изображения графика
